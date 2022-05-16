@@ -2,6 +2,7 @@ package springframework.mmscbrewery.web.services;
 
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import springframework.mmscbrewery.domain.Beer;
 import springframework.mmscbrewery.repositories.BeerRepository;
@@ -12,6 +13,7 @@ import springframework.mmscbrewery.web.model.BeerDto;
 import java.util.UUID;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService{
 
@@ -20,9 +22,10 @@ public class BeerServiceImpl implements BeerService{
 
     @Override
     public BeerDto getBeerById(UUID beerId) {
+
         return beerMapper.beerToBeerDto(
                 beerRepository.findById(beerId)
-                        .orElseThrow(() -> new NotFoundException())
+                        .orElseThrow(() -> new NotFoundException(beerId + ", Not Found."))
         );
     }
 
@@ -39,7 +42,7 @@ public class BeerServiceImpl implements BeerService{
     @Override
     public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
         Beer beer = beerRepository.findById(beerId).orElseThrow(
-                () -> new NotFoundException()
+                () -> new NotFoundException(beerId + ", Not Found.")
         );
 
         beer.setBeerName(beerDto.getBeerName());
