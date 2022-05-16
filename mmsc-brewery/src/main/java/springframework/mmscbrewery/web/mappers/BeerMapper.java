@@ -8,5 +8,5 @@ import springframework.mmscbrewery.web.model.BeerDto;
 public interface BeerMapper {
     BeerDto beerToBeerDto(Beer beer);
 
-    Beer BeerDtoToBeer(BeerDto dto);
+    Beer beerDtoToBeer(BeerDto beerDto);
 }

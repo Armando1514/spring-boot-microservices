@@ -3,6 +3,7 @@ package springframework.mmscbrewery.domain;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -19,9 +20,9 @@ import java.util.UUID;
 public class Beer {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Version
@@ -35,11 +36,11 @@ public class Beer {
     private Timestamp lastModifiedDate;
 
     @Column(unique = true)
-    private Long upc;
+    private String upc;
 
     private String beerName;
     private String beerStyle;
     private BigDecimal price;
-    private Integer minOnHand;
+    private Integer quantityOnHand;
     private Integer quantityToBrew;
 }
