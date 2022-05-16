@@ -35,13 +35,13 @@ class BeerControllerTest {
                 .beerStyle(BeerStyleEnum.ALE)
                 .beerName("notNull")
                 .price(new BigDecimal("1.23"))
-                .upc(13241214L)
+                .upc("13241214")
+                .quantityOnHand(3)
                 .build();
     }
 
     @Test
     void getBeerById() throws Exception {
-        System.out.println("cazzo"+"/api/v1/beer/" + UUID.randomUUID());
 
         mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

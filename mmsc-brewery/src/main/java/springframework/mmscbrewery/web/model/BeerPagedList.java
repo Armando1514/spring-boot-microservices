@@ -1,6 +1,7 @@
 package springframework.mmscbrewery.web.model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 

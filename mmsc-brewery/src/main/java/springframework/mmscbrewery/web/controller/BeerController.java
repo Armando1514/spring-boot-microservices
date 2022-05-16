@@ -1,6 +1,6 @@
 package springframework.mmscbrewery.web.controller;
 
-import org.springframework.http.HttpHeaders;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -11,17 +11,14 @@ import springframework.mmscbrewery.web.services.BeerService;
 
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/beer")
 public class BeerController {
 
 
     private final BeerService beerService;
-    public BeerController(BeerService beerService) {
 
-        this.beerService = beerService;
-    }
 
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") @NotNull UUID beerId){
@@ -30,22 +27,13 @@ public class BeerController {
 
     @PostMapping
     public ResponseEntity saveNewBeer(@RequestBody @Validated BeerDto beerDto){
-
-        beerService.saveBeer(beerDto);
-
-        HttpHeaders headers = new HttpHeaders();
-
-        headers.add("Location", "http:/...");
-
-        return new ResponseEntity(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(beerService.saveBeer(beerDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
     public ResponseEntity updateBeerById(@PathVariable("beerId") @NotNull  UUID beerId, @RequestBody @Validated BeerDto beerDto){
 
-        beerService.updateBeer(beerId, beerDto);
-
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{beerId}")
