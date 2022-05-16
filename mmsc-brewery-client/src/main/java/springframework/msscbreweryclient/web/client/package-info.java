@@ -1,0 +1,1 @@
+package springframework.msscbreweryclient.web.client;
