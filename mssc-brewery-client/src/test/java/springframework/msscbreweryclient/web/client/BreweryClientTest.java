@@ -43,6 +43,7 @@ class BreweryClientTest {
         BeerDto response = client.saveNewBeer(request);
         assertEquals(request.getBeerName(), response.getBeerName());
     }
+    
 
     @Test
     void updateBeer() {
@@ -65,8 +66,4 @@ class BreweryClientTest {
         assertEquals(responseGetBeer.getBeerName(), newName);
     }
 
-    @Test
-    void deleteBeer() {
-        client.deleteBeer(UUID.randomUUID());
-    }
 }
