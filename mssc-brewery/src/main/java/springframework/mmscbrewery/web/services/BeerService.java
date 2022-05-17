@@ -8,7 +8,7 @@ import springframework.mmscbrewery.web.model.BeerStyleEnum;
 import java.util.UUID;
 
 public interface BeerService {
-    BeerDto getBeerById(UUID beerId);
+    BeerDto getBeerById(UUID beerId, Boolean showInventoryOnHand);
 
     BeerDto saveBeer(BeerDto beerDto);
 
