@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>springframework</groupId>
-	<artifactId>mmsc-brewery</artifactId>
+	<artifactId>mmsc-beer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mmsc-brewery</name>
-	<description>SFG Brewery</description>
+	<name>mmsc-beer</name>
+	<description>SFG Beer</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
