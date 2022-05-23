@@ -1,4 +1,4 @@
-package springframework.mmscbrewery.web.services;
+package springframework.mmscbrewery.web.services.brewing;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
