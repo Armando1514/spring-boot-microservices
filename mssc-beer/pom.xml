@@ -15,8 +15,6 @@
 	<description>SFG Beer</description>
 
 	<dependencies>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
@@ -34,7 +32,6 @@
 			<artifactId>activemq-core</artifactId>
 			<version>5.7.0</version>
 		</dependency>
-
 	</dependencies>
 
 
