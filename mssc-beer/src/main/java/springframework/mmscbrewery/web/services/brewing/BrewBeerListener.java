@@ -12,6 +12,8 @@ import springframework.mmscbrewery.events.NewInventoryEvent;
 import springframework.mmscbrewery.repositories.BeerRepository;
 import springframework.mmscbrewery.web.model.BeerDto;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -20,6 +22,7 @@ public class BrewBeerListener {
     private final BeerRepository beerRepository;
     private final JmsTemplate jmsTemplate;
 
+    @Transactional
     @JmsListener(destination = JmsConfig.BREWING_REQUEST_QUEUE)
     public void listen(BrewBeerEvent event){
         BeerDto beerDto = event.getBeerDto();
