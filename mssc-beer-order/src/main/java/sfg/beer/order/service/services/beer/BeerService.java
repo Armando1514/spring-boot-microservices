@@ -1,7 +1,7 @@
 package sfg.beer.order.service.services.beer;
 
 
-import sfg.beer.order.service.web.model.BeerDto;
+import brewery.model.BeerDto;
 
 import java.util.Optional;
 import java.util.UUID;

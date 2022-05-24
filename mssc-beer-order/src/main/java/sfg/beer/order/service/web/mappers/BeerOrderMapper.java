@@ -19,7 +19,7 @@ package sfg.beer.order.service.web.mappers;
 
 import org.mapstruct.Mapping;
 import sfg.beer.order.service.domain.BeerOrder;
-import sfg.beer.order.service.web.model.BeerOrderDto;
+import brewery.model.BeerOrderDto;
 import org.mapstruct.Mapper;
 
 @Mapper(uses = {DateMapper.class, BeerOrderLineMapper.class})

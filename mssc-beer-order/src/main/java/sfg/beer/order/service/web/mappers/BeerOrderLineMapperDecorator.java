@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import sfg.beer.order.service.domain.BeerOrderLine;
 import sfg.beer.order.service.services.beer.BeerService;
-import sfg.beer.order.service.web.model.BeerDto;
-import sfg.beer.order.service.web.model.BeerOrderLineDto;
+import brewery.model.BeerDto;
+import brewery.model.BeerOrderLineDto;
 
 import java.util.Optional;
 
