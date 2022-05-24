@@ -1,11 +1,10 @@
 package springframework.mmscbrewery.repositories;
 
+import brewery.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import springframework.mmscbrewery.domain.Beer;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
 
 import java.util.UUID;
 

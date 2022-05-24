@@ -1,11 +1,11 @@
 package springframework.mmscbrewery.bootstrap;
 
+import brewery.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springframework.mmscbrewery.domain.Beer;
 import springframework.mmscbrewery.repositories.BeerRepository;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
 
 import java.math.BigDecimal;
 

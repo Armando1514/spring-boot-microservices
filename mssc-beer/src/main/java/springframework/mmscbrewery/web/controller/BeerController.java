@@ -1,14 +1,15 @@
 package springframework.mmscbrewery.web.controller;
 
+import brewery.model.BeerDto;
+import brewery.model.BeerPagedList;
+import brewery.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import springframework.mmscbrewery.web.model.BeerDto;
-import springframework.mmscbrewery.web.model.BeerPagedList;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
+
 import springframework.mmscbrewery.web.services.BeerService;
 
 
@@ -27,10 +28,10 @@ import java.util.UUID;
 
      @GetMapping(produces = { "application/json" }, path = "beer")
      public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
-                                                   @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                                   @RequestParam(value = "beerName", required = false) String beerName,
-                                                   @RequestParam(value = "beerStyle", required = false) BeerStyleEnum beerStyle,
-                                                   @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
+                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                                    @RequestParam(value = "beerName", required = false) String beerName,
+                                                    @RequestParam(value = "beerStyle", required = false) BeerStyleEnum beerStyle,
+                                                    @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
 
         if (showInventoryOnHand == null) {
             showInventoryOnHand = false;

@@ -1,5 +1,7 @@
 package springframework.mmscbrewery.web.controller;
 
+import brewery.model.BeerDto;
+import brewery.model.BeerStyleEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import springframework.mmscbrewery.web.model.BeerDto;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
 import springframework.mmscbrewery.web.services.BeerService;
 
 import java.math.BigDecimal;

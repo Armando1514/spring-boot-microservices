@@ -1,7 +1,10 @@
-package common.events;
+package brewery.model.events;
 
-import lombok.*;
-import springframework.mmscbrewery.web.model.BeerDto;
+import brewery.model.BeerDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 

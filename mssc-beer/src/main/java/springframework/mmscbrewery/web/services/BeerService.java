@@ -1,9 +1,9 @@
 package springframework.mmscbrewery.web.services;
 
+import brewery.model.BeerDto;
+import brewery.model.BeerPagedList;
+import brewery.model.BeerStyleEnum;
 import org.springframework.data.domain.PageRequest;
-import springframework.mmscbrewery.web.model.BeerDto;
-import springframework.mmscbrewery.web.model.BeerPagedList;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
 
 import java.util.UUID;
 
