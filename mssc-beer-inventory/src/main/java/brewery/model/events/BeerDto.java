@@ -1,4 +1,4 @@
-package common.events;
+package brewery.model.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
