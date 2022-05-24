@@ -7,8 +7,8 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import springframework.mmscbrewery.config.JmsConfig;
 import springframework.mmscbrewery.domain.Beer;
-import springframework.mmscbrewery.events.BrewBeerEvent;
-import springframework.mmscbrewery.events.NewInventoryEvent;
+import common.events.BrewBeerEvent;
+import common.events.NewInventoryEvent;
 import springframework.mmscbrewery.repositories.BeerRepository;
 import springframework.mmscbrewery.web.model.BeerDto;
 

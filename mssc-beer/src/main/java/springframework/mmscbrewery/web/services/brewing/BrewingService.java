@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import springframework.mmscbrewery.config.JmsConfig;
 import springframework.mmscbrewery.domain.Beer;
-import springframework.mmscbrewery.events.BrewBeerEvent;
+import common.events.BrewBeerEvent;
 import springframework.mmscbrewery.repositories.BeerRepository;
 import springframework.mmscbrewery.web.mappers.BeerMapper;
 import springframework.mmscbrewery.web.services.inventory.BeerInventoryService;
