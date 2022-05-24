@@ -1,8 +1,7 @@
-package common.events;
+package brewery.model.events;
 
-import common.events.BeerEvent;
+import brewery.model.BeerDto;
 import lombok.NoArgsConstructor;
-import springframework.mmscbrewery.web.model.BeerDto;
 @NoArgsConstructor
 public class BrewBeerEvent extends BeerEvent {
 

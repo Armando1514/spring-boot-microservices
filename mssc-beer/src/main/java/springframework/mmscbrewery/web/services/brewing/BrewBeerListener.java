@@ -1,5 +1,8 @@
 package springframework.mmscbrewery.web.services.brewing;
 
+import brewery.model.BeerDto;
+import brewery.model.events.BrewBeerEvent;
+import brewery.model.events.NewInventoryEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -7,10 +10,8 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import springframework.mmscbrewery.config.JmsConfig;
 import springframework.mmscbrewery.domain.Beer;
-import common.events.BrewBeerEvent;
-import common.events.NewInventoryEvent;
+
 import springframework.mmscbrewery.repositories.BeerRepository;
-import springframework.mmscbrewery.web.model.BeerDto;
 
 import javax.transaction.Transactional;
 
@@ -31,7 +32,7 @@ public class BrewBeerListener {
 
         beerDto.setQuantityOnHand(beer.getQuantityToBrew());
 
-        NewInventoryEvent  newInventoryEvent = new NewInventoryEvent(beerDto);
+        NewInventoryEvent newInventoryEvent = new NewInventoryEvent(beerDto);
 
         log.debug("Brewed beer " + beer.getQuantityOnHand() +", QOH: " +beerDto.getQuantityOnHand());
 

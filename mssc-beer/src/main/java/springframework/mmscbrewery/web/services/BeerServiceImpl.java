@@ -1,5 +1,8 @@
 package springframework.mmscbrewery.web.services;
 
+import brewery.model.BeerDto;
+import brewery.model.BeerPagedList;
+import brewery.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
@@ -12,11 +15,7 @@ import springframework.mmscbrewery.domain.Beer;
 import springframework.mmscbrewery.repositories.BeerRepository;
 import springframework.mmscbrewery.web.controller.exception.NotFoundException;
 import springframework.mmscbrewery.web.mappers.BeerMapper;
-import springframework.mmscbrewery.web.model.BeerDto;
-import springframework.mmscbrewery.web.model.BeerPagedList;
-import springframework.mmscbrewery.web.model.BeerStyleEnum;
 
-import javax.transaction.Transactional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

@@ -1,12 +1,12 @@
 package springframework.mmscbrewery.web.services.brewing;
 
+import brewery.model.events.BrewBeerEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import springframework.mmscbrewery.config.JmsConfig;
 import springframework.mmscbrewery.domain.Beer;
-import common.events.BrewBeerEvent;
 import springframework.mmscbrewery.repositories.BeerRepository;
 import springframework.mmscbrewery.web.mappers.BeerMapper;
 import springframework.mmscbrewery.web.services.inventory.BeerInventoryService;
