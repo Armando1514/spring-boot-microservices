@@ -1,7 +1,7 @@
 package sfg.beer.inventory.service.web.mappers;
 
 import sfg.beer.inventory.service.domain.BeerInventory;
-import sfg.beer.inventory.service.web.model.BeerInventoryDto;
+import brewery.BeerInventoryDto;
 import org.mapstruct.Mapper;
 
 /**

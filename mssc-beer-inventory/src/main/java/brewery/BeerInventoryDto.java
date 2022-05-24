@@ -1,4 +1,4 @@
-package sfg.beer.inventory.service.web.model;
+package brewery;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
