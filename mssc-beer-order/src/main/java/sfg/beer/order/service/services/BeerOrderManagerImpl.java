@@ -37,6 +37,7 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
     }
 
     @Override
+    @Transactional
     public void processValidationResult(UUID beerOrderId, Boolean isValid) {
         BeerOrder beerOrder = beerOrderRepository.getOne(beerOrderId);
 
