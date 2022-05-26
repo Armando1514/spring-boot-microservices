@@ -27,5 +27,4 @@ public class BeerOrderAllocationResultListener {
             beerOrderManager.beerOrderAllocationFailed(result.getBeerOrderDto());
         }
     }
-
 }
