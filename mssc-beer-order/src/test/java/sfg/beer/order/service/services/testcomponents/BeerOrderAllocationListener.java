@@ -23,15 +23,40 @@ public class BeerOrderAllocationListener {
     public void listen(Message msg){
         AllocateOrderRequest request = (AllocateOrderRequest) msg.getPayload();
 
+        boolean pendingInventory = false;
+        boolean allocationError = false;
+        boolean sendResponse = true;
+
+        //set allocation error
+        if (request.getBeerOrder().getCustomerRef() != null) {
+            if (request.getBeerOrder().getCustomerRef().equals("fail-allocation")){
+                allocationError = true;
+            }  else if (request.getBeerOrder().getCustomerRef().equals("partial-allocation")) {
+                pendingInventory = true;
+            } else if (request.getBeerOrder().getCustomerRef().equals("dont-allocate")){
+                sendResponse = false;
+            }
+        }
+
+
+        boolean finalPendingInventory = pendingInventory;
+
         request.getBeerOrder().getBeerOrderLines().forEach(beerOrderLineDto -> {
-            beerOrderLineDto.setQuantityAllocated(beerOrderLineDto.getOrderQuantity());
+            if (finalPendingInventory) {
+                beerOrderLineDto.setQuantityAllocated(beerOrderLineDto.getOrderQuantity() - 1);
+            } else {
+                beerOrderLineDto.setQuantityAllocated(beerOrderLineDto.getOrderQuantity());
+            }
         });
 
-        jmsTemplate.convertAndSend(JmsConfig.ALLOCATE_ORDER_RESPONSE,
-                AllocateOrderResult.builder()
-                        .beerOrderDto(request.getBeerOrder())
-                        .pendingInventory(false)
-                        .allocationError(false)
-                        .build());
+
+        if(sendResponse) {
+            jmsTemplate.convertAndSend(JmsConfig.ALLOCATE_ORDER_RESPONSE,
+                    AllocateOrderResult.builder()
+                            .beerOrderDto(request.getBeerOrder())
+                            .pendingInventory(pendingInventory)
+                            .allocationError(allocationError)
+                            .build());
+        }
     }
 }
