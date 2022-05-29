@@ -2,6 +2,7 @@ package sfg.beer.inventory.service.services.listeners;
 
 
 import brewery.model.events.AllocateOrderRequest;
+import brewery.model.events.DeallocateOrderRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -17,7 +18,7 @@ public class DeallocationListener {
     private final AllocationService allocationService;
 
     @JmsListener(destination = JmsConfig.DEALLOCATE_ORDER_QUEUE)
-    public void listen(AllocateOrderRequest request){
+    public void listen(DeallocateOrderRequest request){
         allocationService.deallocateOrder(request.getBeerOrder());
     }
 }

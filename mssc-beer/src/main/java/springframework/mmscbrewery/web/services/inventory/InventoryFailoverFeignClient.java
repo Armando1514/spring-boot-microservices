@@ -11,8 +11,8 @@ import springframework.mmscbrewery.web.services.inventory.model.BeerInventoryDto
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "beer-inventory-service", fallback = InventoryServiceFeignClientFailover.class)
-public interface InventoryServiceFeignClient {
+@FeignClient(name = "beer-inventory-failover")
+public interface InventoryFailoverFeignClient {
 
     @RequestMapping(method = RequestMethod.GET, value = BeerInventoryServiceRestTemplateImpl.INVENTORY_PATH)
     ResponseEntity<List<BeerInventoryDto>> getOnhandInventory(@PathVariable UUID beerId);

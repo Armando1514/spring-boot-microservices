@@ -1,4 +1,4 @@
-package sfg.beer.inventory.service.services;
+package sfg.beer.inventory.service.services.listeners;
 
 import org.springframework.jms.annotation.JmsListener;
 import sfg.beer.inventory.service.config.JmsConfig;
@@ -17,13 +17,15 @@ public class NewInventoryListener {
     private final BeerInventoryRepository beerInventoryRepository;
 
     @JmsListener(destination = JmsConfig.NEW_INVENTORY_QUEUE)
-    public void listen(NewInventoryEvent event) {
+    public void listen(NewInventoryEvent event){
+
         log.debug("Got Inventory: " + event.toString());
 
         beerInventoryRepository.save(BeerInventory.builder()
-                        .beerId(event.getBeerDto().getId())
-                        .upc(event.getBeerDto().getUpc())
-                        .quantityOnHand(event.getBeerDto().getQuantityOnHand())
-                        .build());
+                .beerId(event.getBeerDto().getId())
+                .upc(event.getBeerDto().getUpc())
+                .quantityOnHand(event.getBeerDto().getQuantityOnHand())
+                .build());
     }
+
 }

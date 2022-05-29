@@ -16,6 +16,8 @@
  */
 package sfg.beer.inventory.service.repositories;
 
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import sfg.beer.inventory.service.domain.BeerInventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -27,7 +29,7 @@ import java.util.UUID;
  */
 public interface BeerInventoryRepository extends JpaRepository<BeerInventory, UUID> {
 
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     List<BeerInventory> findAllByBeerId(UUID beerId);
-
     List<BeerInventory> findAllByUpc(String upc);
 }

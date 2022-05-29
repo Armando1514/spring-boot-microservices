@@ -22,7 +22,6 @@ public class AllocationServiceImpl implements AllocationService {
     private final BeerInventoryRepository beerInventoryRepository;
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Boolean allocateOrder(BeerOrderDto beerOrderDto) {
         log.debug("Allocating OrderId: " + beerOrderDto.getId());
 
@@ -42,6 +41,7 @@ public class AllocationServiceImpl implements AllocationService {
 
         return totalOrdered.get() == totalAllocated.get();
     }
+
     private void allocateBeerOrderLine(BeerOrderLineDto beerOrderLine) {
         List<BeerInventory> beerInventoryList = beerInventoryRepository.findAllByUpc(beerOrderLine.getUpc());
 
