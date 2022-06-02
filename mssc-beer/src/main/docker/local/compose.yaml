@@ -18,7 +18,7 @@ services:
        - 8761:8761
 
    gateway:
-     image: armando1514/mssc-brewery-eureka:0.0.1-SNAPSHOT
+     image: armando1514/mssc-brewery-gateway:0.0.1-SNAPSHOT
      ports:
        - 9090:9090
      depends_on:
