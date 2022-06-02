@@ -33,7 +33,6 @@ public class BreweryClient {
     @Transactional
     @Scheduled(fixedRate = 1000)
     public void callRegularlyBeerService(){
-        System.out.println("cazzo");
 
         byte[] array = new byte[7]; // length is bounded by 7
         new Random().nextBytes(array);
@@ -42,6 +41,8 @@ public class BreweryClient {
         BeerDto requestSaveBeer  = BeerDto.builder()
                 .beerStyle(BeerStyleEnum.ALE)
                 .beerName(generatedString)
+                .quantityOnHand(10)
+                .quantityToBrew(2)
                 .price(new BigDecimal("1.23"))
                 .upc(String.valueOf(UUID.randomUUID()))
                 .build();
