@@ -1,6 +1,6 @@
 FROM openjdk:18.0.1-jdk
 
-EXPOSE 8081
+EXPOSE 8084
 
 
 WORKDIR application

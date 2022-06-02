@@ -1,14 +1,17 @@
 package springframework.msscbreweryclient.web.client;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import springframework.msscbreweryclient.web.model.BeerDto;
+import springframework.msscbreweryclient.web.model.BeerStyleEnum;
 
-import java.net.URI;
+import java.math.BigDecimal;
+import java.nio.charset.Charset;
+import java.util.Random;
 import java.util.UUID;
 
 @Component
@@ -21,9 +24,35 @@ public class BreweryClient {
     private  String apiHost;
     private final RestTemplate restTemplate;
 
-    private BreweryClient(RestTemplateBuilder restTemplateBuilder) {
+    public BreweryClient(RestTemplateBuilder restTemplateBuilder) {
 
         this.restTemplate = restTemplateBuilder.build();
+    }
+
+
+    @Transactional
+    @Scheduled(fixedRate = 1000)
+    public void callRegularlyBeerService(){
+        System.out.println("cazzo");
+
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+
+        BeerDto requestSaveBeer  = BeerDto.builder()
+                .beerStyle(BeerStyleEnum.ALE)
+                .beerName(generatedString)
+                .price(new BigDecimal("1.23"))
+                .upc(String.valueOf(UUID.randomUUID()))
+                .build();
+
+        BeerDto responseBeerSaved  = this.saveNewBeer(requestSaveBeer);
+
+        responseBeerSaved = this.getBeerById(responseBeerSaved.getId());
+
+        responseBeerSaved.setBeerName("newName-"+ generatedString);
+
+        this.updateBeer(responseBeerSaved.getId(), responseBeerSaved);
     }
 
     public BeerDto getBeerById(UUID uuid) {
@@ -31,19 +60,18 @@ public class BreweryClient {
         return restTemplate.getForObject(apiHost + BEER_PATH_V1 + uuid, BeerDto.class);
     }
 
+
+
     public BeerDto saveNewBeer(BeerDto beerDto){
 
             return restTemplate.postForObject(apiHost + BEER_PATH_V1, beerDto, BeerDto.class);
     }
 
+
     public void updateBeer(UUID uuid, BeerDto beerDto){
         restTemplate.put(apiHost + BEER_PATH_V1 + uuid, beerDto);
     }
 
-    public void deleteBeer(UUID uuid){
-
-        restTemplate.delete(apiHost + BEER_PATH_V1 + uuid);
-    }
 
     public void setApiHost(String apiHost) {
         this.apiHost = apiHost;

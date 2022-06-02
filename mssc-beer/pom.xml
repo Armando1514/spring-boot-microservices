@@ -13,7 +13,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mmsc-beer</name>
 	<description>SFG Beer</description>
-
+	<properties>
+		<directoryName>mssc-beer</directoryName>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>

@@ -13,7 +13,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>mssc-beer-inventory-failover</name>
     <description>mssc-beer-inventory-failover</description>
-
+    <properties>
+        <directoryName>mssc-beer-failover</directoryName>
+    </properties>
 
     <dependencies>
         <dependency>

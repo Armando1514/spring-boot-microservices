@@ -1,17 +1,12 @@
-FROM openjdk:slim-buster as builder
-WORKDIR application
-ADD maven/${project.build.finalName}.jar ${project.build.finalName}.jar
-RUN java -Djarmode=layertools -jar ${project.build.finalName}.jar extract
-
-FROM openjdk:slim-buster
-LABEL PROJECT_NAME=${project.artifactId} \
-      PROJECT=${project.id}
+FROM openjdk:18.0.1-jdk
 
 EXPOSE 8080
 
+
 WORKDIR application
-COPY --from=builder application/dependencies/ ./
-COPY --from=builder application/spring-boot-loader/ ./
-COPY --from=builder application/snapshot-dependencies/ ./
-COPY --from=builder application/application/ ./
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "org.springframework.boot.loader.JarLauncher"]
+RUN microdnf install git
+RUN git clone https://github.com/Armando1514/spring-boot-microservices.git
+RUN ( cd ./spring-boot-microservices/mssc-brewery-bom ; ./mvnw clean install)
+RUN ( cd ./spring-boot-microservices/${directoryName} ; ./mvnw clean package)
+WORKDIR spring-boot-microservices/${directoryName}
+ENTRYPOINT ./mvnw spring-boot:run

@@ -9,16 +9,21 @@
     </parent>
 
     <groupId>springframework</groupId>
-    <artifactId>mmsc-beer-inventory-service</artifactId>
+    <artifactId>mssc-beer-inventory-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mmsc-beer-inventory-service</name>
-    <description>MMSC Beer Inventory Service</description>
+    <name>mssc-beer-inventory-service</name>
+    <description>MSSC Beer Inventory Service</description>
+    <properties>
+        <directoryName>mssc-beer-inventory</directoryName>
+    </properties>
     <dependencies>
         <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
                 <version>2.7.0</version>
         </dependency>
+
     </dependencies>
+
 
 </project>

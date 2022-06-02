@@ -12,7 +12,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>mmsc-beer-order-service</name>
     <description>MMSC Beer Order Service</description>
-
+    <properties>
+        <directoryName>mssc-beer-order</directoryName>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.activemq</groupId>

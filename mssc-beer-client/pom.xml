@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <directoryName>mssc-beer-client</directoryName>
     </properties>
 
 	<dependencies>

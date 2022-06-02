@@ -15,7 +15,11 @@
     <description>mssc-config-server</description>
     <properties>
         <java.version>17</java.version>
+        <docker.image.prefix>armando1514</docker.image.prefix>
+        <!--Set to name of project-->
+        <docker.image.name>${project.artifactId}</docker.image.name>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,11 +46,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>2.7.0</version>
         </dependency>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>7.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -56,6 +56,36 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.40.0</version>
+                <configuration>
+                    <!--
+                    Mac and Windows WSL 2 users can connect to the Docker Engine through a Unix socket: unix:///var/run/docker.sock
+                    Docker Desktop Windows users can connect to the Docker Engine through a named pipe: npipe:////./pipe/docker_engine, or TCP socket at this URL: tcp://localhost:2375.
+                      -->
+                    <dockerHost>unix:///var/run/docker.sock</dockerHost>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>${docker.image.prefix}/${docker.image.name}</name>
+                            <alias>${project.artifactId}</alias>
+                            <build>
+                                <!-- copies artifact to docker build dir in target -->
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <dockerFile>Dockerfile</dockerFile>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
