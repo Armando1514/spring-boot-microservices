@@ -1,0 +1,31 @@
+# configuration file for filebeat
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      #          labels.dedot: true
+      templates:
+        #        setting a condition, we want our container labels to say "collect logs with filebeat"
+        #        so we will have to go in and add this to the containers that we want to capture logging for
+        - condition:
+            contains:
+              container.labels.collect_logs_with_filebeat: "true"
+          config:
+            - type: container
+              format: docker
+              #              look in this filepath to capture the log data
+              paths:
+                - "/var/lib/docker/containers/${data.docker.container.id}/*.log"
+              processors:
+                #                decode those logs into JSON fields and store them into Elasticsearch
+                #      tells docker/elasticsearch for these logs we want to decode them to JSON, giving us the ability to index and search on them
+                - decode_json_fields:
+                    when.equals:
+                      docker.container.labels.decode_log_event_to_json_object: "true"
+                    fields: ["message"]
+                    target: ""
+                    overwrite_keys: true
+#     some people output first to logstash and then to elasticsearch, here we're outputting directly to elasticsearch
+#     and sending straight to elasticsearch server 9200
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
